@@ -1,8 +1,8 @@
 const { Router } = require('express');
 const axios = require('axios');
+const jwt = require('jsonwebtoken');
 const { config } = require( '../config/config' );
 const User = require('../models/User');
-const mongoose = require('mongoose');
 class UserController {
     getUser = (req, res) => {
         axios.get(`${config.apiUserTest}/${req.params.username} `)
@@ -31,7 +31,7 @@ class UserController {
     }
     register = (req, res) => {
         let objUser = req.body
-        if (objUser.name && objUser.userlastname && objUser.email && objUser.password) {
+        if (objUser.username && objUser.userlastname && objUser.email && objUser.password) {
             User.create(objUser, (err, user) => {
                 if(!err) {
                     let token = jwt.sign({user}, config.privateKey);
@@ -41,7 +41,7 @@ class UserController {
                 }
             })
         } else {
-            res.status(500).send({info: 'Error'});
+            res.status(400).send({info: 'Error'});
         }
     }
 }

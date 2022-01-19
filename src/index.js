@@ -3,14 +3,17 @@ const morgan = require('morgan');
 const cors = require('cors');
 const IndexRouter = require('./routers/IndexRouter');
 const {config } = require('./config/config');
+const Conndb = require('./db/Conndb');
 const UserRouter = require('./routers/UserRouter');
 
 class Server {
     constructor() {
+        this.objConn = new Conndb();
         this.app = express();
         this.#config();
     }
     #config() {
+        console.log(this.objConn);
         //midlewares
         this.app.use(morgan('dev'));
         this.app.use(cors());
