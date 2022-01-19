@@ -12,5 +12,11 @@ class UserController {
                 res.status(500).send(error);
             });
     }
+
+    login = (req, res) => {
+        let {email , password} = req.body
+        let decode = jwt.decode(token, config.privateKey);
+    }
+    register = (req, res) => {}
 }
 module.exports = UserController;
