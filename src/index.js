@@ -23,7 +23,7 @@ class Server {
         this.app.use('/', IndexR.router);
         this.app.use('/user', UserR.router);
 
-        this.app.listen(config.port, () => {
+        this.app.listen(3000, () => {
             console.log('Server on port', this.app.get('port'));
         });
     }
