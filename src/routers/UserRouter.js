@@ -9,6 +9,8 @@ class UserRouter {
     #config() {
         const objUser = new UserController();
         this.router.get('/:username', objUser.getUser);
+        this.router.post('/auth/login', objUser.login);
+        this.router.post('/auth/register', objUser.register);
     }
 }
 
